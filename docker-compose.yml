@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 0cena-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Persist uploads and database
+      - ./uploads:/var/www/html/uploads
+      - ./database:/var/www/html/database
+      - ./logs:/var/www/html/logs
+    env_file:
+      - .env
+    environment:
+      - APP_NAME=0CENA
+      - APP_DEBUG=false 

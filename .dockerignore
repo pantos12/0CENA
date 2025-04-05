@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+.github
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Environment
+.env
+*.env
+
+# Database
+database/*.sqlite
+
+# Uploads
+uploads/*
+
+# Logs
+logs/*
+
+# PHP development server
+serve.php
+
+# Development/setup scripts
+setup.php
+create_logo.php
+create_leaf_placeholders.php
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+README.md
+LICENSE 

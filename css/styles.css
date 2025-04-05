@@ -1,0 +1,663 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Page Dropzone Styles */
+#page-dropzone {
+    position: relative;
+}
+
+#page-dropzone.drag-over::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 87, 35, 0.1);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Background Video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.background-video::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.background-video video {
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+/* Falling Leaves Animation */
+#leaves-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    pointer-events: none;
+}
+
+.leaf {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-5vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+    }
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, rgba(35, 87, 35, 0.7), rgba(35, 87, 35, 0.65));
+    color: white;
+    padding: 30px 0;
+    margin-bottom: 40px;
+    backdrop-filter: blur(5px);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header p {
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+/* Remove API Key Section */
+/* .api-key-section {
+    margin-bottom: 25px;
+} */
+
+/* Tabs */
+.tabs {
+    margin-top: 0;
+}
+
+.tab-header {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+}
+
+.tab-btn.active {
+    color: #235723;
+    border-bottom-color: #235723;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Dropzone Message */
+.dropzone-message {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* File Dropzone */
+.file-dropzone {
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    max-width: 300px;
+    margin: 0 auto 20px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-dropzone.drag-over {
+    border-color: rgba(35, 87, 35, 0.6);
+    background-color: rgba(35, 87, 35, 0.1);
+    transform: scale(1.02);
+}
+
+.dropzone-inner {
+    width: 100%;
+}
+
+.upload-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+    opacity: 0.8;
+}
+
+.browse-link {
+    color: #235723;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.file-info-footer {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hidden {
+    display: none;
+}
+
+.file-list {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.file-item {
+    background-color: rgba(249, 249, 249, 0.8);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.file-item button {
+    background: none;
+    border: none;
+    color: #ff5555;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 200px;
+}
+
+.primary-btn {
+    background-color: rgba(35, 87, 35, 0.8);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+.primary-btn:hover {
+    background-color: rgba(26, 74, 26, 0.9);
+    transform: translateY(-2px);
+}
+
+.primary-btn:disabled {
+    background-color: rgba(204, 204, 204, 0.7);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Results Table */
+.results-container {
+    overflow-x: auto;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results-table th,
+.results-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.results-table th {
+    background-color: #f1f1f1;
+    font-weight: 600;
+}
+
+.results-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: #777;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid white;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Feedback Styles */
+.assessment-report {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.assessment-report h2 {
+    color: #235723;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(35, 87, 35, 0.2);
+    padding-bottom: 8px;
+}
+
+.assessment-report h3 {
+    color: #235723;
+    font-size: 1.15rem;
+    margin: 18px 0 10px;
+    font-weight: 600;
+}
+
+/* New styles for critical issues header */
+.critical-issues-header {
+    color: #d9534f !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid #d9534f;
+    padding-bottom: 5px;
+}
+
+/* Critical issues summary box at the top */
+.critical-issues-summary {
+    background-color: rgba(217, 83, 79, 0.1);
+    border-left: 4px solid #d9534f;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.critical-issues-summary h4 {
+    color: #d9534f;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.critical-issues-summary ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.critical-issues-summary li {
+    color: #d9534f;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.score-value, .confidence-value {
+    font-weight: 600;
+    color: #235723;
+}
+
+.feedback-section {
+    margin-bottom: 15px;
+}
+
+.strengths-list, .improvements-list, .critical-issues-list {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.strengths-list li, .improvements-list li, .critical-issues-list li {
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.strengths-list {
+    color: #155724;
+}
+
+.improvements-list {
+    color: #721c24;
+}
+
+/* Make critical issues more visible */
+.critical-issues-list {
+    color: #d9534f;
+    font-weight: 500;
+}
+
+.critical-issues-list li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.critical-issues-list li::before {
+    content: "⚠️";
+    position: absolute;
+    left: -25px;
+    top: 0;
+}
+
+#feedback-content {
+    padding: 15px 0;
+}
+
+/* Assessment Results Styles */
+.score {
+    font-size: 1.2rem;
+    color: #235723;
+    display: block;
+}
+
+.confidence {
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin: 3px 0;
+    display: inline-block;
+}
+
+/* Update confidence colors for 1-100 scale */
+.high-confidence {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #155724;
+}
+
+.medium-confidence {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}
+
+.low-confidence {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #721c24;
+}
+
+.score-breakdown {
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.dimension-score {
+    margin-bottom: 4px;
+}
+
+.dimension-label {
+    display: inline-block;
+    width: 50px;
+    color: #666;
+}
+
+.progress {
+    display: inline-block;
+    height: 8px;
+    width: 70px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #235723;
+    color: white;
+    text-align: center;
+    font-size: 7px;
+    line-height: 8px;
+}
+
+/* Improve the styling for writing quality badges */
+.writing-quality {
+    margin-top: 8px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 0.75rem;
+}
+
+.excellent-rating {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #155724;
+}
+
+.good-rating {
+    background-color: rgba(0, 123, 255, 0.2);
+    color: #004085;
+}
+
+.fair-rating {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}
+
+.poor-rating {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #721c24;
+}
+
+/* Results Table Adjustments */
+.results-table th:nth-child(3) {
+    width: 180px;
+}
+
+.view-feedback {
+    background-color: #235723;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.view-feedback:hover {
+    background-color: #1a441a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .results-table th,
+    .results-table td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+} 

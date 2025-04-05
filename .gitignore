@@ -1,0 +1,47 @@
+# Environment variables
+.env
+
+# Database files
+*.sqlite
+/database/*.sqlite
+/database/*.db
+
+# Uploaded files
+/uploads/*
+!uploads/.gitkeep
+
+# Logs
+/logs/*
+!logs/.gitkeep
+
+# Images and videos (can be added separately)
+# /images/*
+# /videos/*
+
+# PHP dependencies
+/vendor/
+
+# Cache and session files
+/temp/
+/cache/
+/sessions/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker volume mounts
+.docker-volumes/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak 
