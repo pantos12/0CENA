@@ -44,6 +44,27 @@ A lightweight PHP web application for grading park and recreation agency submiss
 - Stop: `docker-compose down`
 - Rebuild: `docker-compose build --no-cache`
 
+## Render Deployment
+
+### Setup Instructions
+1. Create a new Web Service in your Render dashboard
+2. Connect your GitHub repository
+3. Use the following settings:
+   - **Environment**: Docker
+   - **Name**: 0CENA (or your preferred name)
+   - **Branch**: main (or your default branch)
+   - **Root Directory**: ./
+   - **Instance Type**: Choose based on your needs (Free tier works for testing)
+   - **Region**: Choose the closest to your users
+
+4. Add the following environment variable:
+   - Key: `OPENAI_API_KEY`
+   - Value: Your actual OpenAI API key
+
+5. Click "Create Web Service"
+
+Render will automatically build and deploy your Docker image. Each time you push to your repository, Render will rebuild and redeploy automatically.
+
 ## Manual Setup
 
 1. Clone this repository to your web server
@@ -76,7 +97,7 @@ For the most secure operation:
 3. Ensure the `.env` file has restricted permissions: `chmod 600 .env`
 4. The `.env` file is already in `.gitignore` to prevent accidental commits
 
-This way, your API key remains on the server and is never exposed to clients.
+When deploying to Render or similar platforms, use environment variables instead of the `.env` file for better security.
 
 ## Background Video Instructions
 
