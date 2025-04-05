@@ -55,21 +55,28 @@ try {
         exit;
     }
 
-    // Get API key from .env file first
-    $apiKey = null;
-    $envFile = '.env';
-    if (file_exists($envFile)) {
-        $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($lines as $line) {
-            if (strpos($line, '=') !== false) {
-                list($name, $value) = explode('=', $line, 2);
-                if ($name === 'OPENAI_API_KEY' && !empty($value) && $value !== 'your_api_key_here') {
-                    $apiKey = $value;
-                    break;
+    // Get API key from environment variables first (for Render deployment)
+    $apiKey = getenv('OPENAI_API_KEY');
+    
+    // If no environment variable, try to get it from .env file
+    if (empty($apiKey)) {
+        $envFile = '.env';
+        if (file_exists($envFile)) {
+            $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                if (strpos($line, '=') !== false) {
+                    list($name, $value) = explode('=', $line, 2);
+                    if ($name === 'OPENAI_API_KEY' && !empty($value) && $value !== 'your_api_key_here') {
+                        $apiKey = $value;
+                        break;
+                    }
                 }
             }
         }
     }
+    
+    // Debug log - be careful with this in production!
+    file_put_contents('logs/api_key_debug.log', date('Y-m-d H:i:s') . " - API Key Found: " . (!empty($apiKey) ? "YES" : "NO") . PHP_EOL, FILE_APPEND | LOCK_EX);
 
     // Check if files were uploaded
     if (!isset($_FILES['files'])) {
